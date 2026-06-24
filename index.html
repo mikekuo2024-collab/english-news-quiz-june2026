@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>國際新聞英文測驗 — June 24, 2026</title>
+<title>åéæ°èè±ææ¸¬é© â June 25, 2026</title>
 <style>
   :root {
     --primary: #1a56a4;
@@ -177,9 +177,7 @@
     background: white;
   }
   .option:hover { background: var(--primary-light); border-color: var(--primary); }
-
   .option input[type="radio"] { accent-color: var(--primary); }
-
   .option.correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); font-weight: 600; }
   .option.wrong { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
 
@@ -242,646 +240,709 @@
   }
   .score-panel.show { display: block; }
 
-  .score-big {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: var(--primary);
-    line-height: 1;
-    margin-bottom: 6px;
+  .score-circle {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
+  .score-number { font-size: 2.2rem; line-height: 1; }
+  .score-total { font-size: 0.85rem; opacity: 0.7; }
 
-  .score-grade {
-    font-size: 1.5rem;
-    font-weight: 800;
-    margin-bottom: 14px;
-  }
-  .grade-A { color: #16a34a; }
-  .grade-B { color: #2563eb; }
-  .grade-C { color: #d97706; }
-  .grade-D { color: #dc2626; }
+  .grade-A { background: #dcfce7; color: var(--correct); border: 3px solid var(--correct); }
+  .grade-B { background: #dbeafe; color: var(--primary); border: 3px solid var(--primary); }
+  .grade-C { background: #fef9c3; color: #a16207; border: 3px solid #ca8a04; }
+  .grade-D { background: var(--wrong-bg); color: var(--wrong); border: 3px solid var(--wrong); }
 
-  .score-breakdown {
+  .score-message { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .score-sub { font-size: 0.85rem; color: var(--text-light); }
+
+  .breakdown {
     display: flex;
     gap: 16px;
     justify-content: center;
-    flex-wrap: wrap;
     margin-top: 16px;
+    flex-wrap: wrap;
   }
-  .score-box {
+  .breakdown-item {
     background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 20px;
-    min-width: 120px;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    text-align: center;
   }
-  .score-box .label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 4px; }
-  .score-box .val { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
-
-  .score-msg {
-    font-size: 1rem;
-    color: var(--text-light);
-    margin: 10px 0 4px;
-  }
+  .breakdown-item strong { display: block; font-size: 1.2rem; color: var(--primary); }
 
   @media (max-width: 640px) {
-    body { padding: 12px; }
-    .header { padding: 20px; }
+    .header { padding: 22px 16px; }
+    .header h1 { font-size: 1.3rem; }
     .question-card { padding: 16px; }
-    .score-big { font-size: 2.5rem; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>🌐 國際新聞英文測驗</h1>
-  <p>International News English Quiz &nbsp;|&nbsp; June 24, 2026</p>
+  <h1>ð åéæ°èè±ææ¸¬é©</h1>
+  <p>International News English Quiz â June 25, 2026</p>
   <div class="tag-row">
-    <span class="tag">📰 外交 Diplomacy</span>
-    <span class="tag">🏅 體育 Sports</span>
-    <span class="tag">💻 科技 Technology</span>
-    <span class="tag">🌍 社會 Society</span>
-    <span class="tag">20題 20Qs</span>
+    <span class="tag">ð¬ð§ UK Politics</span>
+    <span class="tag">â¢ï¸ Iran Nuclear Talks</span>
+    <span class="tag">ð¨ð´ Colombia Election</span>
+    <span class="tag">â½ World Cup 2026</span>
   </div>
 </div>
 
 <div class="progress-label">
-  <span id="prog-text">已作答 0 / 20 題</span>
-  <span id="prog-pct">0%</span>
+  <span id="progressText">å·²ä½ç­ 0 / 20 é¡</span>
+  <span id="progressPct">0%</span>
 </div>
 <div class="progress-bar-wrap">
-  <div class="progress-bar" id="prog-bar" style="width:0%"></div>
+  <div class="progress-bar" id="progressBar" style="width:0%"></div>
 </div>
 
-<!-- SECTION 1: VOCABULARY -->
+<!-- ===== SECTION A: VOCABULARY ===== -->
 <div class="section-label">
-  <span class="badge">📚 單字 Vocabulary</span>
-  <div class="line"></div>
-  <span style="font-size:0.8rem;color:var(--text-light)">Q1–Q10</span>
+  <span class="badge">ð Section Aï¼å®å­çè§£</span>
+  <span class="line"></span>
+  <span style="font-size:0.8rem;color:var(--text-light)">Q1âQ10</span>
 </div>
 
 <!-- Q1 -->
-<div class="question-card" id="qcard-1">
+<div class="question-card" id="qcard1">
   <div class="q-header">
     <span class="q-number">1</span>
-    <span class="q-text">The word <strong>"ceasefire"</strong> in the news means ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What does the word <strong>"resignation"</strong> mean in the following sentence?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"The U.S. and Iran signed a preliminary MoU that established a 60-day <em>ceasefire</em> and a framework for reopening the Strait of Hormuz."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q1" value="A"> A. 停火；交戰各方同意暫停敵對行動</label>
-    <label class="option"><input type="radio" name="q1" value="B"> B. 外交承認；一國正式承認另一國的行為</label>
-    <label class="option"><input type="radio" name="q1" value="C"> C. 和平條約；正式永久結束戰爭的文件</label>
-    <label class="option"><input type="radio" name="q1" value="D"> D. 停戰談判；雙方協商停止戰爭的過程</label>
+  <div class="q-context">"Keir Starmer announced his <em>resignation</em> on June 22, 2026, making him the sixth UK prime minister to step down in seven years."</div>
+  <div class="options" id="opts1">
+    <label class="option"><input type="radio" name="q1" value="A"> A. éæ°é¸è</label>
+    <label class="option"><input type="radio" name="q1" value="B"> B. è¾­è·</label>
+    <label class="option"><input type="radio" name="q1" value="C"> C. å®£èªå°±è·</label>
+    <label class="option"><input type="radio" name="q1" value="D"> D. è¬éçæåº¦</label>
   </div>
-  <div class="explanation" id="exp-1">
-    ✅ 正確答案：<strong>A</strong>。<strong>Ceasefire</strong>（停火）指交戰各方同意暫停軍事行動，通常是臨時性的，不等於正式和平條約（peace treaty）。<br>
-    💡 <strong>字根提示：</strong> cease（停止）+ fire（開火）→ 停止開火。<br>
-    📝 例句：After months of fighting, both sides finally agreed to a ceasefire. （雙方終於在數月交戰後同意停火。）
+  <div class="explanation" id="exp1">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. è¾­è·</strong><br>
+    <strong>å­æ ¹è¨æ¶æ³ï¼</strong>re-ï¼éæ°ï¼+ signï¼ç°½åï¼+ -ationï¼åè©å­å°¾ï¼â ãéæ°ç°½åãæç°½è¾­è·ä¿¡ï¼å³è¾­è·ãåè©çº resignã<br>
+    <strong>ç¸éè©ï¼</strong>resign (v.) è¾­è· / resigned (adj.) è¾­è·çï¼èªå½ç<br>
+    <strong>å£è¨£ï¼</strong>re + sign = åç°½ä¸æ¬¡ = ç°½è¾­å
   </div>
 </div>
 
 <!-- Q2 -->
-<div class="question-card" id="qcard-2">
+<div class="question-card" id="qcard2">
   <div class="q-header">
     <span class="q-number">2</span>
-    <span class="q-text">Which of the following best defines <strong>"sanctions"</strong>?</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">Which meaning best fits <strong>"landslide victory"</strong> in this context?</span>
+    <span class="q-type">çèª</span>
   </div>
-  <div class="q-context">"The U.S. Treasury issued a 60-day <em>sanctions</em> waiver, allowing Iran to resume oil production and exports."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q2" value="A"> A. 軍事部署；一國在他國境內的軍事存在</label>
-    <label class="option"><input type="radio" name="q2" value="B"> B. 制裁；為施壓而採取的貿易或金融限制措施</label>
-    <label class="option"><input type="radio" name="q2" value="C"> C. 外交承認；正式承認一個國家或政府</label>
-    <label class="option"><input type="radio" name="q2" value="D"> D. 援助計畫；提供他國資金或物資的方案</label>
+  <div class="q-context">"Starmer, who led the Labour Party to a <em>landslide victory</em> in the 2024 general election, had promised political stability."</div>
+  <div class="options" id="opts2">
+    <label class="option"><input type="radio" name="q2" value="A"> A. ä»¥å°æ¸ç¥¨éªå</label>
+    <label class="option"><input type="radio" name="q2" value="B"> B. è´å¾æå¾ä¸åé¸åçé¸ç¥¨</label>
+    <label class="option"><input type="radio" name="q2" value="C"> C. å£åæ§å¤§å</label>
+    <label class="option"><input type="radio" name="q2" value="D"> D. ééèå¼ç²å</label>
   </div>
-  <div class="explanation" id="exp-2">
-    ✅ 正確答案：<strong>B</strong>。<strong>Sanctions</strong>（制裁）是一國或國際組織對另一國採取的貿易、金融或外交限制，目的是迫使對方改變行為。<br>
-    💡 <strong>記憶口訣：</strong> sanction 有「批准」和「制裁」兩個相反意思，在國際新聞中通常指 economic/trade sanctions（經濟制裁）。<br>
-    📝 The U.S. lifted oil sanctions on Iran as a goodwill gesture.（美國解除對伊朗的石油制裁以示善意。）
+  <div class="explanation" id="exp2">
+    â <strong>æ­£ç¢ºç­æ¡ï¼C. å£åæ§å¤§å</strong><br>
+    <strong>å­é¢æè±¡ï¼</strong>landslide = å±±å´©ãåç³æµï¼å½¢å®¹é¸ç¥¨å¦å±±å´©è¬å¤§éæ¹§åæäºº â å£åæ§åå©ã<br>
+    <strong>ä¾å¥ï¼</strong>The team won by a landslide, 80 to 20. ï¼é£æ¯éä¼ä»¥80æ¯20å¤§æ¯åç²åï¼<br>
+    <strong>è¨æ¶æå·§ï¼</strong>æ³åé¸ç¥¨å¦åç³æµï¼landslideï¼è¬ä¸é¢åï¼å°±æ¯ãå¤§ç²å¨åãã
   </div>
 </div>
 
 <!-- Q3 -->
-<div class="question-card" id="qcard-3">
+<div class="question-card" id="qcard3">
   <div class="q-header">
     <span class="q-number">3</span>
-    <span class="q-text">The word <strong>"tenure"</strong> in the context of UK politics means ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What is the meaning of <strong>"ceasefire"</strong> as used in the news?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"His departure ends a turbulent <em>tenure</em> marked by mounting pressure from within his own party."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q3" value="A"> A. 選舉活動；競選公職的整個過程</label>
-    <label class="option"><input type="radio" name="q3" value="B"> B. 黨內初選；決定候選人的黨內選舉</label>
-    <label class="option"><input type="radio" name="q3" value="C"> C. 任期；擔任某職位的時間段</label>
-    <label class="option"><input type="radio" name="q3" value="D"> D. 政策方針；某政府採取的施政路線</label>
+  <div class="q-context">"On June 15, U.S. and Iranian officials reportedly reached a preliminary agreement to extend a <em>ceasefire</em> and reopen the Strait of Hormuz."</div>
+  <div class="options" id="opts3">
+    <label class="option"><input type="radio" name="q3" value="A"> A. è²¿æåè­°</label>
+    <label class="option"><input type="radio" name="q3" value="B"> B. åç«åè­°</label>
+    <label class="option"><input type="radio" name="q3" value="C"> C. å®£æ°éç</label>
+    <label class="option"><input type="radio" name="q3" value="D"> D. æ ¸æ­¦æ¢ç´</label>
   </div>
-  <div class="explanation" id="exp-3">
-    ✅ 正確答案：<strong>C</strong>。<strong>Tenure</strong>（任期）指某人擔任某職位的時間段。在英國政治中，Starmer's tenure as PM 指他擔任首相的這段時期。<br>
-    💡 <strong>字根提示：</strong> ten- 來自拉丁文 tenere（持有）→ tenure = 持有職位的時間。<br>
-    📝 His tenure as CEO lasted for five years.（他擔任執行長的任期長達五年。）
+  <div class="explanation" id="exp3">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. åç«åè­°</strong><br>
+    <strong>å­æ ¹æè§£ï¼</strong>ceaseï¼åæ­¢ï¼+ fireï¼éç«/æ°ç«ï¼= åç«ãcease æçºãåæ­¢ãçµæ­¢ãã<br>
+    <strong>ç¸éè©ï¼</strong>cease (v.) åæ­¢ / ceaseless (adj.) ä¸åç<br>
+    <strong>å£è¨£ï¼</strong>cease = åæ­¢ï¼ceasefire = è®æ°ç«ï¼fireï¼åæ­¢ï¼ceaseï¼
   </div>
 </div>
 
 <!-- Q4 -->
-<div class="question-card" id="qcard-4">
+<div class="question-card" id="qcard4">
   <div class="q-header">
     <span class="q-number">4</span>
-    <span class="q-text">Choose the best meaning for <strong>"frontrunner"</strong>.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">The word <strong>"contentious"</strong> is closest in meaning to which option?</span>
+    <span class="q-type">åç¾©è©</span>
   </div>
-  <div class="q-context">"Andy Burnham is widely considered the <em>frontrunner</em> to become Britain's next prime minister."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q4" value="A"> A. 現任者；目前擔任某職位的人</label>
-    <label class="option"><input type="radio" name="q4" value="B"> B. 被提名人；正式被推薦角逐某職位的人</label>
-    <label class="option"><input type="radio" name="q4" value="C"> C. 最具優勢的候選人；競爭中最可能獲勝的人</label>
-    <label class="option"><input type="radio" name="q4" value="D"> D. 挑戰者；以較弱地位挑戰現任者的人</label>
+  <div class="q-context">"Negotiations between the United States and Iran have entered a critical and <em>contentious</em> phase, with a significant dispute over nuclear inspections."</div>
+  <div class="options" id="opts4">
+    <label class="option"><input type="radio" name="q4" value="A"> A. peacefulï¼åå¹³çï¼</label>
+    <label class="option"><input type="radio" name="q4" value="B"> B. controversialï¼æç­è­°çï¼</label>
+    <label class="option"><input type="radio" name="q4" value="C"> C. constructiveï¼æå»ºè¨­æ§çï¼</label>
+    <label class="option"><input type="radio" name="q4" value="D"> D. transparentï¼éæçï¼</label>
   </div>
-  <div class="explanation" id="exp-4">
-    ✅ 正確答案：<strong>C</strong>。<strong>Frontrunner</strong>（最具優勢的候選人）指在競賽或選舉中目前領先、最可能獲勝的人。<br>
-    💡 <strong>字面拆解：</strong> front（前面）+ runner（跑者）→ 跑在最前面的人 → 領先者。<br>
-    📝 She emerged as the frontrunner for the position after her impressive performance.（她在出色表現後成為最具優勢的候選人。）
+  <div class="explanation" id="exp4">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. controversialï¼æç­è­°çï¼</strong><br>
+    <strong>å­æ ¹è¨æ¶ï¼</strong>contentï¼å§å®¹ï¼â contendï¼ç­è«ï¼â contentiousï¼å¼ç¼ç­è«çï¼ã<br>
+    <strong>ä¸­æï¼</strong>æç­è­°çãå¼èµ·ç­åµç<br>
+    <strong>ä¾å¥ï¼</strong>Abortion is a contentious topic in many countries. ï¼å¢®èå¨è¨±å¤åå®¶æ¯æç­è­°çè­°é¡ï¼
   </div>
 </div>
 
 <!-- Q5 -->
-<div class="question-card" id="qcard-5">
+<div class="question-card" id="qcard5">
   <div class="q-header">
     <span class="q-number">5</span>
-    <span class="q-text">The adjective <strong>"unprecedented"</strong> means ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What does <strong>"endorsement"</strong> mean in political context?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"The 2026 FIFA World Cup is the largest in the tournament's history, featuring an <em>unprecedented</em> 48 national teams."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q5" value="A"> A. 非常受歡迎的；吸引大量觀眾或支持者的</label>
-    <label class="option"><input type="radio" name="q5" value="B"> B. 史無前例的；從未發生過的；空前的</label>
-    <label class="option"><input type="radio" name="q5" value="C"> C. 具爭議性的；引發廣泛討論與不同意見的</label>
-    <label class="option"><input type="radio" name="q5" value="D"> D. 令人失望的；未達到預期的</label>
+  <div class="q-context">"De la Espriella received the enthusiastic <em>endorsement</em> of US President Donald Trump, who praised him on social media."</div>
+  <div class="options" id="opts5">
+    <label class="option"><input type="radio" name="q5" value="A"> A. æ¹è©</label>
+    <label class="option"><input type="radio" name="q5" value="B"> B. å¬éæ¯æï¼èæ¸</label>
+    <label class="option"><input type="radio" name="q5" value="C"> C. è²¡åè³å©</label>
+    <label class="option"><input type="radio" name="q5" value="D"> D. å¤äº¤æ¿èª</label>
   </div>
-  <div class="explanation" id="exp-5">
-    ✅ 正確答案：<strong>B</strong>。<strong>Unprecedented</strong>（史無前例的）指從未發生過的事情。<br>
-    💡 <strong>字首解析：</strong> un-（否定）+ precedent（先例）+ -ed → 沒有先例的 → 史無前例的。<br>
-    📝 The heatwave reached unprecedented temperatures across Europe.（熱浪使整個歐洲達到史無前例的高溫。）
+  <div class="explanation" id="exp5">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. å¬éæ¯æï¼èæ¸</strong><br>
+    <strong>å­æ ¹è¨æ¶ï¼</strong>endorse æºèª en- + dorsoï¼èé¢ï¼â ãå¨èé¢ç°½åãâ ç°½åæ¯æï¼å¼ç³çºå¬éèæ¸ãè¡¨ææ¯æã<br>
+    <strong>åæ¥­ç¨æ³ï¼</strong>ç°½åå¨æ¯ç¥¨èé¢ï¼endorsing a checkï¼ä¹å« endorseã<br>
+    <strong>å£è¨£ï¼</strong>endorsement = å¨èå¾ï¼dorsoï¼ç°½åæè° = èæ¸ãæ¯æ
   </div>
 </div>
 
 <!-- Q6 -->
-<div class="question-card" id="qcard-6">
+<div class="question-card" id="qcard6">
   <div class="q-header">
     <span class="q-number">6</span>
-    <span class="q-text">What does the verb <strong>"retaliate"</strong> mean?</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What is a <strong>"runoff election"</strong>?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"In a tit-for-tat response, China moved to <em>retaliate</em> against U.S. sanctions on Chinese tech companies."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q6" value="A"> A. 協商；透過談判尋求解決方案</label>
-    <label class="option"><input type="radio" name="q6" value="B"> B. 倡議；為某項事業積極爭取支持</label>
-    <label class="option"><input type="radio" name="q6" value="C"> C. 報復；以類似手段回應對方的攻擊或傷害</label>
-    <label class="option"><input type="radio" name="q6" value="D"> D. 撤回；取消或收回先前做出的決定或聲明</label>
+  <div class="q-context">"Colombians made history on June 21, 2026, electing Abelardo de la Espriella as their new president in a razor-thin <em>runoff election</em>."</div>
+  <div class="options" id="opts6">
+    <label class="option"><input type="radio" name="q6" value="A"> A. å¨æ²æç«¶ç­å°æçææ³ä¸çé¸è</label>
+    <label class="option"><input type="radio" name="q6" value="B"> B. å¨ç¬¬ä¸è¼ªç¡äººéåæ¸å¾ï¼åå©ååæ¬¡æç¥¨çæ±ºé¸</label>
+    <label class="option"><input type="radio" name="q6" value="C"> C. é¸èåºç¾èå¼èéè¾¦çé¸è</label>
+    <label class="option"><input type="radio" name="q6" value="D"> D. ç¶²è·¯ç·ä¸æç¥¨çé¸è</label>
   </div>
-  <div class="explanation" id="exp-6">
-    ✅ 正確答案：<strong>C</strong>。<strong>Retaliate</strong>（報復）指以相應或類似手段回應對方的不友善行為。<br>
-    💡 <strong>同義詞：</strong> get back at, strike back, hit back。搭配常用 retaliate against/for。<br>
-    📝 The company retaliated by raising tariffs on imported goods.（該公司以提高進口商品關稅的方式報復。）
+  <div class="explanation" id="exp6">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. å¨ç¬¬ä¸è¼ªç¡äººéåæ¸å¾ï¼åå©ååæ¬¡æç¥¨çæ±ºé¸</strong><br>
+    <strong>å­é¢æè±¡ï¼</strong>runoff åæãæµå¤±ãææµãï¼é¸èä¸æãæº¢åºãçé¸ç¥¨éåæ¬¡å°æ±º â æ±ºé¸/ç¬¬äºè¼ªæç¥¨ã<br>
+    <strong>å¥å«æ¯äºé¸èä¾å­ï¼</strong>ç¬¬ä¸è¼ª de la Espriella å¾ 44%ï¼æªéåæ¸ï¼å æ­¤é²è¡ runoff electionï¼æ±ºé¸ï¼ã<br>
+    <strong>å¥åï¼</strong>ä¹å¯ç¨± second roundï¼ç¬¬äºè¼ªï¼ã
   </div>
 </div>
 
 <!-- Q7 -->
-<div class="question-card" id="qcard-7">
+<div class="question-card" id="qcard7">
   <div class="q-header">
     <span class="q-number">7</span>
-    <span class="q-text">The term <strong>"dual-use"</strong> in the tech sanctions story refers to ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">Choose the correct meaning of <strong>"successor"</strong>.</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"Chinese companies would be blocked from exporting '<em>dual-use</em>' items — goods that have both civilian and military applications."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q7" value="A"> A. 專門用於軍事目的，不能在民間使用的產品</label>
-    <label class="option"><input type="radio" name="q7" value="B"> B. 同時具有民用與軍事用途的產品或技術</label>
-    <label class="option"><input type="radio" name="q7" value="C"> C. 由兩國共同研發的產品，具有智慧財產爭議</label>
-    <label class="option"><input type="radio" name="q7" value="D"> D. 可在兩個不同國家市場販售的消費性商品</label>
+  <div class="q-context">"His likely <em>successor</em> is Andy Burnham, the highly popular former Mayor of Greater Manchester, who is expected to take office around July 18."</div>
+  <div class="options" id="opts7">
+    <label class="option"><input type="radio" name="q7" value="A"> A. ç«¶é¸å°æ</label>
+    <label class="option"><input type="radio" name="q7" value="B"> B. åä»»è</label>
+    <label class="option"><input type="radio" name="q7" value="C"> C. ç¹¼ä»»è</label>
+    <label class="option"><input type="radio" name="q7" value="D"> D. é¡§å</label>
   </div>
-  <div class="explanation" id="exp-7">
-    ✅ 正確答案：<strong>B</strong>。<strong>Dual-use</strong>（軍民兩用）指同時具有和平（民用）與軍事用途的技術或產品，如無人機、高效能晶片等，因此受到出口管制。<br>
-    💡 <strong>記憶口訣：</strong> dual = 兩個，use = 用途 → 兩種用途 → 軍民兩用。<br>
-    📝 Many semiconductor technologies are considered dual-use and subject to export controls.（許多半導體技術被視為軍民兩用，受出口管制約束。）
+  <div class="explanation" id="exp7">
+    â <strong>æ­£ç¢ºç­æ¡ï¼C. ç¹¼ä»»è</strong><br>
+    <strong>å­æ ¹è¨æ¶ï¼</strong>succeedï¼ç¹¼ä»»ãæåï¼â successorï¼ç¹¼ä»»èï¼ãæ³¨æï¼succeed æå©åææï¼â æå â¡ç¹¼ä»»ã<br>
+    <strong>åç¾©è©ï¼</strong>predecessorï¼åä»»èï¼<br>
+    <strong>å£è¨£ï¼</strong>success = æåï¼successor = è·å¨ãæåèãå¾é¢çäºº = ç¹¼ä»»è
   </div>
 </div>
 
 <!-- Q8 -->
-<div class="question-card" id="qcard-8">
+<div class="question-card" id="qcard8">
   <div class="q-header">
     <span class="q-number">8</span>
-    <span class="q-text">The verb <strong>"escalate"</strong> most closely means ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What does <strong>"surpassing"</strong> mean in this sentence?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"Tensions between the United States and China over technology and national security <em>escalated</em> further this week."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q8" value="A"> A. 逐漸緩和；壓力或衝突程度逐漸降低</label>
-    <label class="option"><input type="radio" name="q8" value="B"> B. 重新評估；改變原本的判斷或立場</label>
-    <label class="option"><input type="radio" name="q8" value="C"> C. 逐步升級；問題或衝突程度不斷加劇</label>
-    <label class="option"><input type="radio" name="q8" value="D"> D. 達成協議；雙方就某議題取得共識</label>
+  <div class="q-context">"Messi brought his all-time World Cup goal tally to 18, setting a new men's record and <em>surpassing</em> the previous mark held by Germany's Miroslav Klose."</div>
+  <div class="options" id="opts8">
+    <label class="option"><input type="radio" name="q8" value="A"> A. è¤è£½ï¼æ¨¡ä»¿</label>
+    <label class="option"><input type="radio" name="q8" value="B"> B. è¶è¶ï¼è¶é</label>
+    <label class="option"><input type="radio" name="q8" value="C"> C. éå°ï¼æµé</label>
+    <label class="option"><input type="radio" name="q8" value="D"> D. æ¢å¾©ï¼éå»º</label>
   </div>
-  <div class="explanation" id="exp-8">
-    ✅ 正確答案：<strong>C</strong>。<strong>Escalate</strong>（升級）指情況、衝突或緊張程度逐步加劇。<br>
-    💡 <strong>字根提示：</strong> scala（拉丁文，梯子）→ escalate = 像爬梯子一樣往上升 → 升級。反義詞：de-escalate（降低緊張）。<br>
-    📝 The dispute escalated into a full diplomatic crisis.（這場爭端升級為全面的外交危機。）
+  <div class="explanation" id="exp8">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. è¶è¶ï¼è¶é</strong><br>
+    <strong>å­æ ¹è¨æ¶ï¼</strong>sur-ï¼è¶éï¼+ passï¼ééï¼â surpass = è¶éãè¶éã-ing çºç¾å¨åè©ï¼ç¨ä½åè©æ§å¥ã<br>
+    <strong>åç¾©è©ï¼</strong>exceed / outdo / overtake<br>
+    <strong>å£è¨£ï¼</strong>surï¼è¶éï¼+ passï¼ééï¼= è¶è¶éé = è¶è¶
   </div>
 </div>
 
 <!-- Q9 -->
-<div class="question-card" id="qcard-9">
+<div class="question-card" id="qcard9">
   <div class="q-header">
     <span class="q-number">9</span>
-    <span class="q-text">Which sentence uses <strong>"persist"</strong> correctly?</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">Which meaning best fits <strong>"relentless"</strong> in context?</span>
+    <span class="q-type">å®å­</span>
   </div>
-  <div class="q-context">"The extreme heat, which scientists link to climate change, is expected to <em>persist</em> through at least the end of the week."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q9" value="A"> A. The rain persisted for over a week, flooding many low-lying areas.</label>
-    <label class="option"><input type="radio" name="q9" value="B"> B. She persisted the book on the shelf after finishing it.</label>
-    <label class="option"><input type="radio" name="q9" value="C"> C. The government persisted the new law against environmental activists.</label>
-    <label class="option"><input type="radio" name="q9" value="D"> D. He persisted the agreement with a firm handshake and a smile.</label>
+  <div class="q-context">"The three superstars represent different styles of play: Messi, the veteran maestro; MbappÃ©, the electric winger; and Haaland, the <em>relentless</em> 25-year-old goal machine."</div>
+  <div clas="options" id="opts9">
+    <label class="option"><input type="radio" name="q9" value="A"> A. ç¥yç§ç</label>
+    <label class="option"><input type="radio" name="q9" value="B"> B. ä¸åæ­çï¼å éä¸æç</label>
+    <label class="option"><input type="radio" name="q9" value="C"> C. ç«¨æç</label>
+    <label class="option"><input type="radio" name="q9" value="D"> D. ê«éç</label>
   </div>
-  <div class="explanation" id="exp-9">
-    ✅ 正確答案：<strong>A</strong>。<strong>Persist</strong>（持續；堅持）是不及物動詞，後面不直接接受詞，表示某狀況持續存在或某人堅持做某事。<br>
-    💡 <strong>常見搭配：</strong> The problem persists. / She persisted in her efforts. / Symptoms may persist for days.<br>
-    ❌ 選項B、C、D錯誤，因為 persist 後面不能直接加受詞名詞。
+  <div class="explanation" id="exp9">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. æ¤¸åæ­çï¼å éä¸æç</strong><br>
+    <strong>å­æ ¹è¨æ¶ï¼</strong>relentï¼ç·©åãå¿è»ï¼â relentlessï¼æ¯«ä¸ç·©åçï¼= ä¸åæ­ãæ¯«ä¸æè»ã<br>
+    <strong>ä¸­æï¼</strong>ä¸åæ­çï¼æ®é·ç¡æçï¼å æä¸æçï¼è¦æå¢èå®ï¼<br>
+    <strong>å£è¨£ï¼</strong>re-lent-less = æ¯«ä¸ãéè®ãï¼lentârelentï¼ç = ä¸åæ­
   </div>
 </div>
 
 <!-- Q10 -->
-<div class="question-card" id="qcard-10">
+<div class="question-card" id="qcard10">
   <div class="q-header">
     <span class="q-number">10</span>
-    <span class="q-text">The adjective <strong>"diplomatic"</strong> best describes ___.</span>
-    <span class="q-type">單字</span>
+    <span class="q-text">What does <strong>"razor-thin"</strong> describe in this context?</span>
+    <span class="q-type">çèª</span>
   </div>
-  <div class="q-context">"Vice President Vance met with Iranian representatives, signaling the highest-level direct <em>diplomatic</em> contact between the two countries in decades."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q10" value="A"> A. 與軍事力量的運用相關的</label>
-    <label class="option"><input type="radio" name="q10" value="B"> B. 與兩國間外交談判或關係相關的</label>
-    <label class="option"><input type="radio" name="q10" value="C"> C. 與國內選舉和政黨競爭相關的</label>
-    <label class="option"><input type="radio" name="q10" value="D"> D. 與貿易協定和市場開放相關的</label>
+  <div class="q-context">"De la Espriella won the <em>razor-thin</em> runoff election, defeating his rival by approximately 250,000 votes out of millions cast."</div>
+  <div class="options" id="opts10">
+    <label class="option"><input type="radio" name="q10" value="A"> A. å£åæ§çå·®è·</label>
+    <label class="option"><input type="radio" name="q10" value="B"> B. éå¸¸å¾®å°çå·®è·ï¼å¦åéè¬ç´°èï¼</label>
+    <label class="option"><input type="radio" name="q10" value="C"> C. èå¼é æçååå©</label>
+    <label class="option"><input type="radio" name="q10" value="D"> D. ç²¾æºçç§å­¸è¨ç®</label>
   </div>
-  <div class="explanation" id="exp-10">
-    ✅ 正確答案：<strong>B</strong>。<strong>Diplomatic</strong>（外交的）指與國家間官方交涉、談判或關係相關的。名詞形式：diplomacy（外交）；執行者：diplomat（外交官）。<br>
-    💡 <strong>補充：</strong> diplomatic 也可以用來形容一個人處事圓融、說話得體：She was very diplomatic in handling the conflict.（她在處理衝突時非常圓融。）
+  <div class="explanation" id="exp10">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. éå¸¸å¾®å°çå·®è·ï¼å¦åéè¬ç´°èï¼</strong><br>
+    <strong>æè±¡è§£æï¼</strong>razor = ååï¼åçæ¥µè â razor-thin = èå¦åé â å½¢å®¹å·®è·æ¥µå¾®å°ã<br>
+    <strong>ç¸ä¼¼è¡¨éï¼</strong>by a hair's breadthï¼å·®ä¸é»é»ï¼/ neck and neckï¼ä¸¦éç¥é½é©ï¼/ a close call<br>
+    <strong>å£è¨£ï¼</strong>razorï¼ååï¼+ thinï¼èï¼= åçé£éº¼èçå·®è· = æ¥µæ¥è¿ççµæ
   </div>
 </div>
 
-<!-- SECTION 2: GRAMMAR -->
+<!-- ===== SECTION B: GRAMMAR ===== -->
 <div class="section-label">
-  <span class="badge">📖 文法 Grammar</span>
-  <div class="line"></div>
-  <span style="font-size:0.8rem;color:var(--text-light)">Q11–Q20</span>
+  <span class="badge">ð Section Bï¼ææ³æç¨</span>
+  <span class="line"></span>
+  <span style="font-size:0.8rem;color:var(--text-light)">Q11âQ20</span>
 </div>
 
 <!-- Q11 -->
-<div class="question-card" id="qcard-11">
+<div class="question-card" id="qcard11">
   <div class="q-header">
     <span class="q-number">11</span>
-    <span class="q-text">Choose the correct form: "U.S. and Iranian negotiators ___ a preliminary agreement on June 15."</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Choose the correct verb form. (ç¾å¨å®æå¼)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞句：The U.S. and Iran appear to be moving toward a historic diplomatic agreement.</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q11" value="A"> A. have signed</label>
-    <label class="option"><input type="radio" name="q11" value="B"> B. signed</label>
-    <label class="option"><input type="radio" name="q11" value="C"> C. had signed</label>
-    <label class="option"><input type="radio" name="q11" value="D"> D. will have signed</label>
+  <div class="q-context">News context: Messi has now set a new all-time World Cup scoring record.</div>
+  <p style="margin:10px 0;font-size:0.95rem;">Messi ________ 18 goals in his World Cup career so far, breaking the previous record.</p>
+  <div class="options" id="opts11">
+    <label class="option"><input type="radio" name="q11" value="A"> A. scored</label>
+    <label class="option"><input type="radio" name="q11" value="B"> B. has scored</label>
+    <label class="option"><input type="radio" name="q11" value="C"> C. is scoring</label>
+    <label class="option"><input type="radio" name="q11" value="D"> D. had been scoring</label>
   </div>
-  <div class="explanation" id="exp-11">
-    ✅ 正確答案：<strong>B</strong>。句子中有明確的過去時間點「on June 15」，應使用<strong>簡單過去式（Simple Past）</strong>。<br>
-    💡 <strong>口訣：</strong> 有明確時間點（yesterday, last week, in 2020, on June 15）→ 用過去式；沒有時間點或強調「已完成且影響現在」→ 用現在完成式。<br>
-    ❌ A（have signed）適合說「近期已完成，影響現在」但不搭配具體過去時間點。
+  <div class="explanation" id="exp11">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. has scored</strong><br>
+    <strong>ææ³é»ï¼ç¾å¨å®æå¼ï¼Present Perfectï¼</strong><br>
+    ç¨æ³ï¼åä½å¾éå»éå§ï¼å½±é¿å»¶ä¼¸è³ç¾å¨ï¼å¸¸è so far / up to now / already / yet æ­éã<br>
+    <strong>å¬å¼ï¼</strong>have/has + éå»åè©<br>
+    <strong>å£è¨£ï¼</strong>ãå°ç®åçºæ­¢ãç¨ç¾å¨å®æï¼"so far" = "has + p.p."
   </div>
 </div>
 
 <!-- Q12 -->
-<div class="question-card" id="qcard-12">
+<div class="question-card" id="qcard12">
   <div class="q-header">
     <span class="q-number">12</span>
-    <span class="q-text">Which sentence is in the <strong>passive voice</strong>?</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Identify the correct passive voice sentence. (è¢«åèªæ)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞句：China announced sanctions on ten American military-related companies.</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q12" value="A"> A. China sanctioned ten American companies this week.</label>
-    <label class="option"><input type="radio" name="q12" value="B"> B. Ten American companies were sanctioned by China this week.</label>
-    <label class="option"><input type="radio" name="q12" value="C"> C. China has decided to sanction ten American companies.</label>
-    <label class="option"><input type="radio" name="q12" value="D"> D. China is sanctioning more American companies each month.</label>
+  <div class="q-context">News context: Trump endorsed de la Espriella before the Colombia election.</div>
+  <div class="options" id="opts12">
+    <label class="option"><input type="radio" name="q12" value="A"> A. Trump was endorsing de la Espriella.</label>
+    <label class="option"><input type="radio" name="q12" value="B"> B. De la Espriella was endorsed by Trump.</label>
+    <label class="option"><input type="radio" name="q12" value="C"> C. De la Espriella endorsed by Trump.</label>
+    <label class="option"><input type="radio" name="q12" value="D"> D. De la Espriella is endorsing Trump.</label>
   </div>
-  <div class="explanation" id="exp-12">
-    ✅ 正確答案：<strong>B</strong>。<strong>被動語態（Passive Voice）</strong>結構：主詞 + be動詞 + 過去分詞 (+ by + 施動者)。<br>
-    💡 <strong>口訣：</strong> 主動 → 「誰」做了什麼；被動 → 「什麼」被誰做了。新聞中被動語態很常見，用來強調被影響的對象。<br>
-    📝 被動：The agreement was signed by both parties.（協議由雙方簽署。）主動：Both parties signed the agreement.
+  <div class="explanation" id="exp12">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. De la Espriella was endorsed by Trump.</strong><br>
+    <strong>ææ³é»ï¼è¢«åèªæï¼Passive Voiceï¼</strong><br>
+    <strong>å¬å¼ï¼</strong>be åè© + éå»åè©ï¼+ by + åä½å·è¡èï¼<br>
+    æ°èä¸­å¸¸ç¨è¢«åï¼å¼·èª¿äºä»¶çãåè©ãï¼èª°è¢«é¸ãèª°è¢«ä»»å½ï¼èéåä½èã<br>
+    <strong>å£è¨£ï¼</strong>be + p.p. = è¢«åï¼è¢«åå¼·èª¿ãè¢«åçäºº/äºãã
   </div>
 </div>
 
 <!-- Q13 -->
-<div class="question-card" id="qcard-13">
+<div class="question-card" id="qcard13">
   <div class="q-header">
     <span class="q-number">13</span>
-    <span class="q-text">Identify the <strong>relative clause</strong> in the sentence below:</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Which sentence correctly uses a <strong>relative clause</strong>? (éä¿å­å¥)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞句："Andy Burnham, who won the Makerfield by-election convincingly, is widely considered the frontrunner to become Britain's next prime minister."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q13" value="A"> A. Andy Burnham</label>
-    <label class="option"><input type="radio" name="q13" value="B"> B. is widely considered the frontrunner</label>
-    <label class="option"><input type="radio" name="q13" value="C"> C. who won the Makerfield by-election convincingly</label>
-    <label class="option"><input type="radio" name="q13" value="D"> D. to become Britain's next prime minister</label>
+  <div class="q-context">News context: Andy Burnham is the likely successor. He was the popular former Mayor of Greater Manchester.</div>
+  <div class="options" id="opts13">
+    <label class="option"><input type="radio" name="q13" value="A"> A. Andy Burnham, which was the popular mayor, is the likely successor.</label>
+    <label class="option"><input type="radio" name="q13" value="B"> B. Andy Burnham, who was the popular former mayor, is the likely successor.</label>
+    <label class="option"><input type="radio" name="q13" value="C"> C. Andy Burnham, whom was the popular former mayor, is the likely successor.</label>
+    <label class="option"><input type="radio" name="q13" value="D"> D. Andy Burnham, whose the popular former mayor, is the likely successor.</label>
   </div>
-  <div class="explanation" id="exp-13">
-    ✅ 正確答案：<strong>C</strong>。<strong>關係子句（Relative Clause）</strong>以關係代名詞（who, which, that）開頭，修飾前面的名詞。<br>
-    💡 <strong>結構：</strong> [先行詞] + [關係代名詞 + 子句]。這裡 "who" 代替 Andy Burnham，子句 "who won the Makerfield by-election convincingly" 是補充說明。<br>
-    📝 前後加逗號的關係子句是「非限定用法」（non-defining），提供額外資訊，不影響主句意思。
+  <div class="explanation" id="exp13">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. Andy Burnham, who was the popular former mayor, is the likely successor.</strong><br>
+    <strong>ææ³é»ï¼ééå¶æ§éä¿å­å¥ï¼Non-restrictive Relative Clauseï¼</strong><br>
+    æãäººãç¨ whoï¼ä¸»æ ¼ï¼æ whomï¼åæ ¼ï¼ï¼æãç©/äºãç¨ whichã<br>
+    æ­¤è Andy Burnham æ¯ä¸»è©ï¼éä¿å­å¥è£åèªªæï¼ç¨ whoï¼ä¸»æ ¼ï¼ã<br>
+    <strong>å£è¨£ï¼</strong>éä¿å­å¥ä¿®é£¾äººç¨ whoï¼ä¿®é£¾ç©ç¨ whichï¼å©èçå¯ç¨ thatï¼ä½ééå¶æ§å­å¥ä¸­ä¸ç¨ thatï¼ã
   </div>
 </div>
 
 <!-- Q14 -->
-<div class="question-card" id="qcard-14">
+<div class="question-card" id="qcard14">
   <div class="q-header">
     <span class="q-number">14</span>
-    <span class="q-text">Which sentence uses <strong>indirect speech</strong> (間接引語) correctly?</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Complete the <strong>conditional sentence</strong>. (æ¢ä»¶å¥)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">原始直接引語：VP Vance said, "Iran will allow nuclear inspectors back into the country."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q14" value="A"> A. VP Vance stated that Iran will allow nuclear inspectors back into the country.</label>
-    <label class="option"><input type="radio" name="q14" value="B"> B. VP Vance stated that Iran would allow nuclear inspectors back into the country.</label>
-    <label class="option"><input type="radio" name="q14" value="C"> C. VP Vance stated that Iran allowed nuclear inspectors back into the country.</label>
-    <label class="option"><input type="radio" name="q14" value="D"> D. VP Vance stated Iran will be allowing nuclear inspectors back to the country.</label>
+  <div class="q-context">News context: Andy Burnham may or may not be confirmed as PM. If confirmed, he would make history.</div>
+  <p style="margin:10px 0;font-size:0.95rem;">If Burnham ________ confirmed as Prime Minister, he would become the UK's seventh PM in ten years.</p>
+  <div class="options" id="opts14">
+    <label class="option"><input type="radio" name="q14" value="A"> A. is</label>
+    <label class="option"><input type="radio" name="q14" value="B"> B. was</label>
+    <label class="option"><input type="radio" name="q14" value="C"> C. were</label>
+    <label class="option"><input type="radio" name="q14" value="D"> D. will be</label>
   </div>
-  <div class="explanation" id="exp-14">
-    ✅ 正確答案：<strong>B</strong>。將直接引語改為間接引語（reported speech）時，若主句動詞為過去式（stated），子句中的動詞需「後移一個時態」：will → would。<br>
-    💡 <strong>時態後移口訣：</strong><br>
-    will → would | can → could | is/are → was/were | have → had<br>
-    📝 She said, "I am happy." → She said that she was happy.
+  <div class="explanation" id="exp14">
+    â <strong>æ­£ç¢ºç­æ¡ï¼C. were</strong><br>
+    <strong>ææ³é»ï¼åè¨­èªæ°£ï¼ç¬¬äºæ¢ä»¶å¥ / Unreal Conditionalï¼</strong><br>
+    $¸»å¥æ would + åå½¢åè©ï¼è¡¨ç¤ºãéçå¯¦æä¸ç¢ºå®çåè¨­ãï¼if å­å¥ç¨éå»å¼ã<br>
+    ç¾ä»£è±èªä¸­ were é©ç¨æ¼ææäººç¨±ï¼åå« he/she/itï¼ï¼éæ¯åè¨­èªæ°£çç¹å¾µã<br>
+    <strong>å¬å¼ï¼</strong>If + S + were / V-ed..., S + would + V...<br>
+    <strong>å£è¨£ï¼</strong>would å¨å¾ â if å­å¥ç¨éå»å¼ï¼be åè©ä¸å¾ç¨ wereï¼
   </div>
 </div>
 
 <!-- Q15 -->
-<div class="question-card" id="qcard-15">
+<div class="question-card" id="qcard15">
   <div class="q-header">
     <span class="q-number">15</span>
-    <span class="q-text">Choose the correct <strong>conditional sentence</strong> (條件句):</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Choose the correct <strong>indirect speech</strong> form. (éæ¥å¼èª)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞脈絡：Analysts say a final peace deal between the U.S. and Iran is still uncertain.</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q15" value="A"> A. If the talks succeed, a final agreement is reached soon.</label>
-    <label class="option"><input type="radio" name="q15" value="B"> B. If the talks will succeed, a final agreement would be reached.</label>
-    <label class="option"><input type="radio" name="q15" value="C"> C. If the talks succeed, a final agreement will be reached.</label>
-    <label class="option"><input type="radio" name="q15" value="D"> D. If the talks succeeded, a final agreement is reached.</label>
+  <div class="q-context">Direct speech: Trump said, "Iran has agreed to allow UN inspectors access to nuclear sites."</div>
+  <div class="options" id="opts15">
+    <label class="option"><input type="radio" name="q15" value="A"> A. Trump said that Iran has agreed to allow UN inspectors access to nuclear sites.</label>
+    <label class="option"><input type="radio" name="q15" value="B"> B. Trump said that Iran had agreed to allow UN inspectors access to nuclear sites.</label>
+    <label class="option"><input type="radio" name="q15" value="C"> C. Trump said that Iran would agree to allow UN inspectors access to nuclear sites.</label>
+    <label class="option"><input type="radio" name="q15" value="D"> D. Trump said that Iran agrees to allow UN inspectors access to nuclear sites.</label>
   </div>
-  <div class="explanation" id="exp-15">
-    ✅ 正確答案：<strong>C</strong>。<strong>第一條件句（First Conditional）</strong>結構：If + 現在簡單式，主句 + will/can + 原形動詞。表示真實或可能發生的情況。<br>
-    💡 <strong>三種條件句口訣：</strong><br>
-    第一型（真實可能）：If + V現在，will + V<br>
-    第二型（不真實假設）：If + V過去，would + V<br>
-    第三型（與過去相反）：If + had + pp，would have + pp
+  <div class="explanation" id="exp15">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. Trump said that Iran had agreed to allow UN inspectors access to nuclear sites.</strong><br>
+    <strong>ææ³é»ï¼¦éæ¥å¼èªææéå¾ï¼Backshift of Tensesï¼</strong><br>
+    ç´æ¥å¼èªä¸­çç¾å¨å®æå¼ï¼has agreedï¼å¨ said ä¹å¾ééå¾ä¸åææ â è®çºéå»å®æå¼ï¼had agreedï¼ã<br>
+    <strong>ææéå¾è¦åï¼</strong><br>
+    ç¾å¨å¼ â éå»å¼ | ç¾å¨å®æå¼ â éå»å®æå¼ | will â would<br>
+    <strong>å£è¨£ï¼</strong>said ä¸åºç¾ï¼ææå¨é¨å¾å¾éä¸æ ¼ï¼
   </div>
 </div>
 
 <!-- Q16 -->
-<div class="question-card" id="qcard-16">
+<div class="question-card" id="qcard16">
   <div class="q-header">
     <span class="q-number">16</span>
-    <span class="q-text">What is the function of <strong>"However"</strong> in the sentence below?</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Which option correctly uses a <strong>participial phrase</strong>? (åè©æ§å¥)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">"The U.S. and Iran have reached a preliminary agreement. <strong>However</strong>, significant obstacles remain before a final peace deal can be signed."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q16" value="A"> A. 表示原因（Cause）：說明為什麼前面的事情發生</label>
-    <label class="option"><input type="radio" name="q16" value="B"> B. 表示轉折（Contrast）：引出與前句相對立或不同的資訊</label>
-    <label class="option"><input type="radio" name="q16" value="C"> C. 表示結果（Result）：說明前面事情導致的後果</label>
-    <label class="option"><input type="radio" name="q16" value="D"> D. 表示補充（Addition）：加入額外且相似的資訊</label>
+  <div class="q-context">News context: Messi scored a hat-trick. He then became the World Cup's all-time top scorer.</div>
+  <div class="options" id="opts16">
+    <label class="option"><input type="radio" name="q16" value="A"> A. Score a hat-trick, Messi became the all-time top scorer.</label>
+    <label class="option"><input type="radio" name="q16" value="B"> B. Having scored a hat-trick, Messi became the all-time top scorer.</label>
+    <label class="option"><input type="radio" name="q16" value="C"> C. Being score a hat-trick, Messi became the all-time top scorer.</label>
+    <label class="option"><input type="radio" name="q16" value="D"> D. Scored a hat-trick, Messi became the all-time top scorer.</label>
   </div>
-  <div class="explanation" id="exp-16">
-    ✅ 正確答案：<strong>B</strong>。<strong>However</strong>（然而）是<strong>轉折副詞</strong>，用來引出與前句相反或對比的資訊，表示「雖然……但是……」。<br>
-    💡 <strong>常見轉折詞：</strong> however, nevertheless, nonetheless, yet, on the other hand, despite this<br>
-    💡 <strong>常見原因詞：</strong> because, since, as / <strong>結果詞：</strong> therefore, thus, as a result / <strong>補充詞：</strong> moreover, furthermore, in addition
+  <div class="explanation" id="exp16">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. Having scored a hat-trick, Messi became the all-time top scorer.</strong><br>
+    <strong>ææ³é»ï¼å®æå¼åè©æ§å¥ï¼Perfect Participial Phraseï¼</strong><br>
+    ç¨ Having + éå»åè©ï¼è¡¨ç¤ºãåç¼ççåä½ãï¼åé²çï¼å¾æçºç´éä¿æäººï¼ã<br>
+    <strong>ä¸è¬åè©æ§å¥ï¼</strong>V-ingï¼å©åä½åæç¼çï¼<br>
+    <strong>å®æå¼åè©æ§å¥ï¼</strong>Having + p.p.ï¼ååä½åå®æï¼<br>
+    <strong>å£è¨£ï¼</strong>ãååå®åæ¥èåãâ Having + p.p. æ¾å¥é¦ï¼
   </div>
 </div>
 
 <!-- Q17 -->
-<div class="question-card" id="qcard-17">
+<div class="question-card" id="qcard17">
   <div class="q-header">
     <span class="q-number">17</span>
-    <span class="q-text">Identify the <strong>appositive phrase</strong> (同位語) in the sentence:</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Select the best <strong>connective adverb</strong> for this sentence. (è½æå¯è©)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">"Andy Burnham, <strong>the Mayor of Greater Manchester</strong>, won the Makerfield by-election and is now the frontrunner for Labour leader."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q17" value="A"> A. Andy Burnham</label>
-    <label class="option"><input type="radio" name="q17" value="B"> B. the Mayor of Greater Manchester</label>
-    <label class="option"><input type="radio" name="q17" value="C"> C. won the Makerfield by-election</label>
-    <label class="option"><input type="radio" name="q17" value="D"> D. the frontrunner for Labour leader</label>
+  <div class="q-context">News context: Trump claimed Iran agreed to nuclear inspections. Tehran strongly denied this.</div>
+  <p style="margin:10px 0;font-size:0.95rem;">Trump claimed that Iran had agreed to nuclear inspections. ________, Tehran strongly denied this claim.</p>
+  <div class="options" id="opts17">
+    <label class="option"><input type="radio" name="q17" value="A"> A. Thereforeï¼å æ­¤ï¼</label>
+    <label class="option"><input type="radio" name="q17" value="B"> B. Moreoverï¼æ­¤å¤ï¼</label>
+    <label class="option"><input type="radio" name="q17" value="C"> C. Howeverï¼ç¶èï¼</label>
+    <label class="option"><input type="radio" name="q17" value="D"> D. Consequentlyï¼çµæï¼</label>
   </div>
-  <div class="explanation" id="exp-17">
-    ✅ 正確答案：<strong>B</strong>。<strong>同位語（Appositive）</strong>緊接在名詞後面，以逗號隔開，對該名詞補充說明或重新界定。<br>
-    💡 <strong>結構：</strong> [主詞名詞], [同位語（對主詞的補充說明）], [動詞...]<br>
-    📝 Taiwan, an island nation in East Asia, is known for its semiconductor industry.（台灣，東亞的一個島國，以半導體產業聞名。）<br>
-    📝 考試中同位語常被用來測試逗號的使用與句子結構的理解。
+  <div class="explanation" id="exp17">
+    â <strong>æ­£ç¢ºç­æ¡ï¼C. Howeverï¼ç¶èï¼</strong><br>
+    <strong>ææ³é»ï¼è½æå¯è©ï¼Connective / Transitional Adverbsï¼</strong><br>
+    åå¥èªªãåæãï¼å¾å¥èªªãå¦èªãâ ç¸åèªæ â ç¨ Howeverï¼ç¶èï¼ã<br>
+    <strong>å¸¸è¦è½æå¯è©å°ç§ï¼</strong><br>
+    é æ¿ï¼Therefore / Thus / Consequentlyï¼å æï¼<br>
+    éé²ï¼Moreover / Furthermore / In additionï¼è£åï¼<br>
+    å°æ¯ï¼However / Nevertheless / On the other handï¼è½æï¼<br>
+    <strong>å£è¨£ï¼</strong>åå¾ææãç¸åãå°±ç¨ Howeverï¼
   </div>
 </div>
 
 <!-- Q18 -->
-<div class="question-card" id="qcard-18">
+<div class="question-card" id="qcard18">
   <div class="q-header">
     <span class="q-number">18</span>
-    <span class="q-text">Choose the sentence with the correct <strong>participial phrase</strong> (分詞構句):</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Which sentence correctly uses an <strong>appositive phrase</strong>? (åä½èª)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞脈絡：Starmer faced mounting pressure, and he announced his resignation.</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q18" value="A"> A. Faced mounting pressure, Starmer he announced his resignation.</label>
-    <label class="option"><input type="radio" name="q18" value="B"> B. Facing mounting pressure, Starmer announced his resignation.</label>
-    <label class="option"><input type="radio" name="q18" value="C"> C. Having faced mounting pressure, Starmer announces his resignation.</label>
-    <label class="option"><input type="radio" name="q18" value="D"> D. Mounting pressure facing, Starmer announced his resignation.</label>
+  <div class="q-context">News context: Keir Starmer is the UK Prime Minister. He announced his resignation.</div>
+  <div class="options" id="opts18">
+    <label class="option"><input type="radio" name="q18" value="A"> A. Keir Starmer, who is the UK Prime Minister he announced his resignation.</label>
+    <label class="option"><input type="radio" name="q18" value="B"> B. Keir Starmer, the UK Prime Minister, announced his resignation.</label>
+    <label class="option"><input type="radio" name="q18" value="C"> C. Keir Starmer is the UK Prime Minister announced his resignation.</label>
+    <label class="option"><input type="radio" name="q18" value="D"> D. Keir Starmer the UK Prime Minister announced his resignation.</label>
   </div>
-  <div class="explanation" id="exp-18">
-    ✅ 正確答案：<strong>B</strong>。<strong>分詞構句</strong>用現在分詞（V-ing）或過去分詞（V-ed）取代副詞子句，主詞要與主句相同。<br>
-    💡 <strong>結構：</strong> [V-ing/V-ed + ...], [主句]。<br>
-    A 錯誤：多餘的 "he"。C 錯誤：主句時態不一致（announces應為announced）。D 錯誤：語序混亂。<br>
-    📝 Knowing the risks, she still chose to proceed.（明知風險，她仍選擇繼續。）
+  <div class="explanation" id="exp18">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. Keir Starmer, the UK Prime Minister, announced his resignation.</strong><br>
+    <strong>ææ³é»ï¼åä½èªï¼Appositiveï¼</strong><br>
+    åä½èªæ¯ç·è·å¨åè©å¾é¢ãç¨éèééçåè©çèªï¼é²ä¸æ­¥èªªæåé¢åè©çèº«åã<br>
+    <strong>çµæ§ï¼</strong>[åè©], [åä½èªï¼åè©çèªï¼], [åè©...]<br>
+    <strong>æ°èä¸­å¸¸è¦ï¼</strong>Messi, Argentina's captain, scored twice. / Burnham, the former mayor, will take office soon.<br>
+    <strong>å£è¨£ï¼</strong>å©åéèå¤¾ä½çåè©çèª = åä½èªï¼èªªæä¸»è©èº«åï¼
   </div>
 </div>
 
 <!-- Q19 -->
-<div class="question-card" id="qcard-19">
+<div class="question-card" id="qcard19">
   <div class="q-header">
     <span class="q-number">19</span>
-    <span class="q-text">Which sentence correctly uses <strong>"not only ... but also"</strong>?</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Choose the correct <strong>superlative</strong> form. (æé«ç´)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">新聞脈絡：The France heat wave is dangerous and also unprecedented in its intensity.</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q19" value="A"> A. The heat wave is not only dangerous but also unprecedented in its intensity.</label>
-    <label class="option"><input type="radio" name="q19" value="B"> B. The heat wave is not only dangerous but unprecedented also in its intensity.</label>
-    <label class="option"><input type="radio" name="q19" value="C"> C. Not only the heat wave is dangerous but also it is unprecedented.</label>
-    <label class="option"><input type="radio" name="q19" value="D"> D. The heat wave is dangerous, not only it is also unprecedented in intensity.</label>
+  <div class="q-context">News context: Messi is widely regarded as the greatest footballer of all time.</div>
+  <p style="margin:10px 0;font-size:0.95rem;">Messi is widely regarded as ________ footballer of all time.</p>
+  <div class="options" id="opts19">
+    <label class="option"><input type="radio" name="q19" value="A"> A. the greater</label>
+    <label class="option"><input type="radio" name="q19" value="B"> B. most great</label>
+    <label class="option"><input type="radio" name="q19" value="C"> C. the greatest</label>
+    <label class="option"><input type="radio" name="q19" value="D"> D. more greatest</label>
   </div>
-  <div class="explanation" id="exp-19">
-    ✅ 正確答案：<strong>A</strong>。<strong>Not only ... but also ...</strong> 的標準結構要求兩個相連部分的語法結構對稱（平行結構 parallel structure）。<br>
-    💡 <strong>平行結構口訣：</strong> not only [形容詞] but also [形容詞]；not only [動詞] but also [動詞]。<br>
-    📝 She is not only intelligent but also hardworking.（她不僅聰明，而且勤奮。）<br>
-    ❌ C 錯誤：not only 位於句首時，主詞與動詞需要倒裝：Not only is the heat wave dangerous, but it is also unprecedented.
+  <div class="explanation" id="exp19">
+    â <strong>æ­£ç¢ºç­æ¡ï¼C. the greatest</strong><br>
+    <strong>ææ³é»ï¼æé«ç´ï¼Superlative Degreeï¼</strong><br>
+    æé«ç´è¦åï¼<br>
+    ç­å½¢å®¹è©ï¼1-2é³ç¯ï¼ï¼whe + adj + -estï¼å¦ï¼great â greatestï¼<br>
+    é·å½¢å®¹è©ï¼3é³ç¯ä»¥ä¸ï¼ï¼the most + adjï¼å¦ï¼the most importantï¼<br>
+    <strong>æ³¨æï¼</strong>great æ¯å®é³ç¯ï¼è¦åè®åå  -estï¼åå  theã<br>
+    <strong>å£è¨£ï¼</strong>æé«ç´è¨å¾å  theï¼short adj + -estï¼long adj åå  mostã
   </div>
 </div>
 
 <!-- Q20 -->
-<div class="question-card" id="qcard-20">
+<div class="question-card" id="qcard20">
   <div class="q-header">
     <span class="q-number">20</span>
-    <span class="q-text">What is the function of <strong>"to ensure"</strong> in the sentence below?</span>
-    <span class="q-type">文法</span>
+    <span class="q-text">Choose the correct form using <strong>no sooner...than</strong>. (åè£å¥)</span>
+    <span class="q-type">ææ³</span>
   </div>
-  <div class="q-context">"Starmer set out a timetable with nominations opening on July 9 <strong>to ensure</strong> a new leader is in place before Parliament returns in September."</div>
-  <div class="options">
-    <label class="option"><input type="radio" name="q20" value="A"> A. 結果不定詞（Result Infinitive）：表示動作帶來的意外後果</label>
-    <label class="option"><input type="radio" name="q20" value="B"> B. 目的不定詞（Purpose Infinitive）：說明做某動作的目的或意圖</label>
-    <label class="option"><input type="radio" name="q20" value="C"> C. 主詞不定詞（Subject Infinitive）：作為句子的主詞</label>
-    <label class="option"><input type="radio" name="q20" value="D"> D. 受詞不定詞（Object Infinitive）：作為及物動詞的受詞</label>
+  <div class="q-context">News context: Starmer had barely won the election before he faced calls to resign.</div>
+  <p style="margin:10px 0;font-size:0.95rem;">No sooner ________ the election than he began to face calls to resign from his own party.</p>
+  <div class="options" id="opts20">
+    <label class="option"><input type="radio" name="q20" value="A"> A. Starmer won</label>
+    <label class="option"><input type="radio" name="q20" value="B"> B. had Starmer won</label>
+    <label class="option"><input type="radio" name="q20" value="C"> C. Starmer had won</label>
+    <label class="option"><input type="radio" name="q20" value="D"> D. did Starmer win</label>
   </div>
-  <div class="explanation" id="exp-20">
-    ✅ 正確答案：<strong>B</strong>。這裡的 "to ensure" 是<strong>目的不定詞</strong>，說明 Starmer 制定時間表的「目的」——為了確保新黨魁在議會返回前就位。<br>
-    💡 <strong>目的不定詞口訣：</strong> 當 to + V 可以用「為了……」解釋時，就是目的不定詞。也可用 in order to 替換，意思相同。<br>
-    📝 She studied hard to pass the exam.（她努力學習，目的是通過考試。）<br>
-    = She studied hard in order to pass the exam.
+  <div class="explanation" id="exp20">
+    â <strong>æ­£ç¢ºç­æ¡ï¼B. had Starmer won</strong><br>
+    <strong>ææ³é»ï¼å¦å®å¯è©åè£ï¼Negative Inversionï¼</strong><br>
+    "No sooner...than" è¡¨ç¤ºãä¸...å°±...ãï¼æ¯å¦å®å¯è©éé ­çåè£å¥åã<br>
+    <strong>çµæ§ï¼</strong>No sooner + had + S + p.p. + than + S + éå»å¼...<br>
+    <strong>ç¸ä¼¼å¥åï¼</strong>Hardly / Scarcely...when + éå»å®æå¼ï¼åè£æ¹å¼ç¸åã<br>
+    <strong>å£è¨£ï¼</strong>No sooner / Hardly / Scarcely éé ­ â å©åè© had è·å°ä¸»è©åé¢ = åè£ï¼
   </div>
 </div>
 
-<!-- Submit Button -->
-<button class="btn-submit" id="btn-submit" onclick="submitQuiz()">✅ 提交答案 Submit Answers</button>
-<button class="btn-reset" id="btn-reset" onclick="resetQuiz()" style="display:none">🔄 重新作答 Reset</button>
+<button class="btn-submit" onclick="submitQuiz()">ð æ¹æ¹æ¸¬é©</button>
+<button class="btn-reset" onclick="resetQuiz()">ð éæ°ä½ç­</button>
 
-<!-- Score Panel -->
-<div class="score-panel" id="score-panel">
-  <div class="score-big" id="score-num">0/20</div>
-  <div class="score-grade" id="score-grade"></div>
-  <p class="score-msg" id="score-msg"></p>
-  <div class="score-breakdown">
-    <div class="score-box">
-      <div class="label">📚 單字 Vocabulary</div>
-      <div class="val" id="vocab-score">0/10</div>
+<div class="score-panel" id="scorePanel">
+  <div class="score-circle" id="scoreCircle">
+    <span class="score-number" id="scoreNum">0</span>
+    <span class="score-total">/ 20</span>
+  </div>
+  <div class="score-message" id="scoreMsg"></div>
+  <div class="score-sub" id="scoreSub"></div>
+  <div class="breakdown">
+    <div class="breakdown-item">
+      <strong id="vocabScore">0/10</strong>
+      ð å®å­å¾å
     </div>
-    <div class="score-box">
-      <div class="label">📖 文法 Grammar</div>
-      <div class="val" id="gram-score">0/10</div>
+    <div class="breakdown-item">
+      <strong id="grammarScore">0/10</strong>
+      ð ææ³å¾å
+    </div>
+    <div class="breakdown-item">
+      <strong id="pctScore">0%</strong>
+      ð¯ æ­£ç¢ºç
     </div>
   </div>
 </div>
 
 <script>
 const answers = {
-  q1: 'A', q2: 'B', q3: 'C', q4: 'C', q5: 'B',
-  q6: 'C', q7: 'B', q8: 'C', q9: 'A', q10: 'B',
-  q11: 'B', q12: 'B', q13: 'C', q14: 'B', q15: 'C',
-  q16: 'B', q17: 'B', q18: 'B', q19: 'A', q20: 'B'
+  q1: 'B', q2: 'C', q3: 'B', q4: 'B', q5: 'B',
+  q6: 'B', q7: 'C', q8: 'B', q9: 'B', q10: 'B',
+  q11: 'B', q12: 'B', q13: 'B', q14: 'C', q15: 'B',
+  q16: 'B', q17: 'C', q18: 'B', q19: 'C', q20: 'B'
 };
+
+const totalQ = 20;
+
+// Track answered count for progress bar
+document.querySelectorAll('input[type="radio"]').forEach(radio => {
+  radio.addEventListener('change', updateProgress);
+});
 
 function updateProgress() {
   let answered = 0;
-  for (let i = 1; i <= 20; i++) {
-    const sel = document.querySelector(`input[name="q${i}"]:checked`);
-    if (sel) answered++;
+  for (let i = 1; i <= totalQ; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected) answered++;
   }
-  const pct = Math.round((answered / 20) * 100);
-  document.getElementById('prog-bar').style.width = pct + '%';
-  document.getElementById('prog-text').textContent = `已作答 ${answered} / 20 題`;
-  document.getElementById('prog-pct').textContent = pct + '%';
+  const pct = Math.round(answered / totalQ * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `å·²ä½ç­ ${answered} / ${totalQ} é¡`;
+  document.getElementById('progressPct').textContent = pct + '%';
 }
 
-document.querySelectorAll('input[type="radio"]').forEach(r => {
-  r.addEventListener('change', updateProgress);
-});
-
 function submitQuiz() {
-  let total = 0, vocab = 0, gram = 0;
+  let total = 0, vocabScore = 0, grammarScore = 0;
 
-  for (let i = 1; i <= 20; i++) {
-    const name = `q${i}`;
-    const correct = answers[name];
-    const sel = document.querySelector(`input[name="${name}"]:checked`);
-    const exp = document.getElementById(`exp-${i}`);
-    const options = document.querySelectorAll(`input[name="${name}"]`);
+  for (let i = 1; i <= totalQ; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    const opts = document.getElementById(`opts${i}`);
+    const exp = document.getElementById(`exp${i}`);
+    const correct = answers[`q${i}`];
 
-    options.forEach(opt => {
-      const label = opt.closest('.option');
-      opt.disabled = true;
-      if (opt.value === correct) label.classList.add('correct');
-      else if (sel && opt.value === sel.value && opt.value !== correct) label.classList.add('wrong');
-    });
+    // Disable all options
+    opts.querySelectorAll('input').forEach(r => r.disabled = true);
 
-    if (exp) exp.classList.add('show');
-
-    if (sel && sel.value === correct) {
-      total++;
-      if (i <= 10) vocab++;
-      else gram++;
+    if (selected) {
+      const selectedLabel = selected.closest('.option');
+      if (selected.value === correct) {
+        selectedLabel.classList.add('correct');
+        total++;
+        if (i <= 10) vocabScore++;
+        else grammarScore++;
+      } else {
+        selectedLabel.classList.add('wrong');
+        // Highlight correct answer
+        opts.querySelectorAll('.option').forEach(opt => {
+          if (opt.querySelector('input').value === correct) {
+            opt.classList.add('correct');
+          }
+        });
+      }
+    } else {
+      // No answer - highlight correct
+      opts.querySelectorAll('.option').forEach(opt => {
+        if (opt.querySelector('input').value === correct) {
+          opt.classList.add('correct');
+        }
+      });
     }
+
+    exp.classList.add('show');
   }
 
-  const panel = document.getElementById('score-panel');
-  panel.classList.add('show');
-  document.getElementById('score-num').textContent = `${total}/20`;
-  document.getElementById('vocab-score').textContent = `${vocab}/10`;
-  document.getElementById('gram-score').textContent = `${gram}/10`;
+  // Show score
+  const panel = document.getElementById('scorePanel');
+  const circle = document.getElementById('scoreCircle');
+  const pct = Math.round(total / totalQ * 100);
 
-  const gradeEl = document.getElementById('score-grade');
-  const msgEl = document.getElementById('score-msg');
-  const pct = total / 20;
-  if (pct >= 0.9) {
-    gradeEl.textContent = '🏆 Grade A — Excellent!';
-    gradeEl.className = 'score-grade grade-A';
-    msgEl.textContent = '表現優異！你對國際新聞英文掌握得非常好！';
-  } else if (pct >= 0.75) {
-    gradeEl.textContent = '🥈 Grade B — Good Job!';
-    gradeEl.className = 'score-grade grade-B';
-    msgEl.textContent = '表現良好！繼續加油，多閱讀英文新聞可以更上一層樓。';
-  } else if (pct >= 0.6) {
-    gradeEl.textContent = '🥉 Grade C — Keep Going!';
-    gradeEl.className = 'score-grade grade-C';
-    msgEl.textContent = '基礎紮實，但仍有進步空間。建議複習錯誤題目的解析。';
+  document.getElementById('scoreNum').textContent = total;
+  document.getElementById('vocabScore').textContent = vocabScore + '/10';
+  document.getElementById('grammarScore').textContent = grammarScore + '/10';
+  document.getElementById('pctScore').textContent = pct + '%';
+
+  let grade, msg, sub;
+  circle.className = 'score-circle';
+  if (pct >= 90) {
+    grade = 'A'; circle.classList.add('grade-A');
+    msg = 'ð åªç§ï¼è±æå¯¦åä¸æµï¼';
+    sub = 'ä½ ææ¡äºæ¬é±æ°èçææééµè©å½èææ³ï¼ç¹¼çºä¿æï¼';
+  } else if (pct >= 75) {
+    grade = 'B'; circle.classList.add('grade-B');
+    msg = 'ð è¯å¥½ï¼ææ¡å¤§é¨åéé»ï¼';
+    sub = 'åè¤ç¿é¯èª¤çé¨åï¼ä½ ä¸å®å¯ä»¥éå°æ»¿åï¼';
+  } else if (pct >= 60) {
+    grade = 'C'; circle.classList.add('grade-C');
+    msg = 'ð å°å¯ï¼ä»æé²æ­¥ç©ºéã';
+    sub = 'å»ºè­°éè®æ°èåæä¸¦è¤ç¿è§£æï¼å å¼·è©å½èææ³åºç¤ã';
   } else {
-    gradeEl.textContent = '📘 Grade D — Review Needed';
-    gradeEl.className = 'score-grade grade-D';
-    msgEl.textContent = '需要加強練習！請仔細閱讀每題解析，再多讀英文新聞。';
+    grade = 'D'; circle.classList.add('grade-D');
+    msg = 'ðª ç¹¼çºåªåï¼å¥ç°å¿ï¼';
+    sub = 'å¤é±è®è±ææ°èï¼æ¯å¤©æ¥è§¸ 10 åå®å­ï¼é²æ­¥å¾å¿«çï¼';
   }
 
-  document.getElementById('btn-submit').style.display = 'none';
-  document.getElementById('btn-reset').style.display = 'block';
-  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  updateProgress();
+  document.getElementById('scoreMsg').textContent = msg;
+  document.getElementById('scoreSub').textContent = sub;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth' });
+
+  // Update progress to 100%
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('progressText').textContent = `æ¸¬é©å®æï¼å¾åï¼${total}/${totalQ}ï¼${grade} ç´ï¼`;
+  document.getElementById('progressPct').textContent = pct + '%';
 }
 
 function resetQuiz() {
-  for (let i = 1; i <= 20; i++) {
-    const options = document.querySelectorAll(`input[name="q${i}"]`);
-    options.forEach(opt => {
-      opt.checked = false;
-      opt.disabled = false;
-      opt.closest('.option').classList.remove('correct', 'wrong');
-    });
-    const exp = document.getElementById(`exp-${i}`);
-    if (exp) exp.classList.remove('show');
-  }
-  document.getElementById('score-panel').classList.remove('show');
-  document.getElementById('btn-submit').style.display = 'block';
-  document.getElementById('btn-reset').style.display = 'none';
-  document.getElementById('prog-bar').style.width = '0%';
-  document.getElementById('prog-text').textContent = '已作答 0 / 20 題';
-  document.getElementById('prog-pct').textContent = '0%';
+  // Reset all radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(r => {
+    r.checked = false;
+    r.disabled = false;
+  });
+  // Remove correct/wrong classes
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.classList.remove('correct', 'wrong');
+  });
+  // Hide explanations
+  document.querySelectorAll('.explanation').forEach(exp => {
+    exp.classList.remove('show');
+  });
+  // Reset score panel
+  document.getElementById('scorePanel').classList.remove('show');
+  // Reset progress
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('progressText').textContent = 'å·²ä½ç­ 0 / 20 é¡';
+  document.getElementById('progressPct').textContent = '0%';
+  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
-
-<p style="text-align:center;color:var(--text-light);font-size:0.75rem;margin-top:32px;">
-  📰 International News English Quiz &nbsp;·&nbsp; June 24, 2026<br>
-  適用程度：高中職英文 B1–B2 &nbsp;|&nbsp; 共 20 題（單字10 + 文法10）
-</p>
 
 </body>
 </html>
